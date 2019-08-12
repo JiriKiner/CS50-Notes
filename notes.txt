@@ -1,0 +1,185 @@
+floats.c
+
+// Floating/point arithmetic with float
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	float x = get_float("x: ");
+
+	// Prompt user for y
+	float y = get_float("y: ");
+
+	// Perform division
+	printf("x / z = %.7f\n", x / y);
+}
+
+(notes:
+- %.7f - shows 7 decimal places instead of the default 6, %.50f shows 50 places and so.
+- floats - decimal places have finite number, because there is finite memory (RAM) in computer. To double the amount, use double instead, but it will use more bits so more space, which is not always effective and it is expensive.
+)
+
+// Floating/point arithmetic with double
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	double x = get_double("x: ");
+
+	// Prompt user for y
+	double y = get_double("y: ");
+
+	// Perform division
+	printf("x / z = %.7f\n", x / y);
+}
+
+
+parity.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for integer
+	int n = get_int("n: ");
+
+	// Check parity of integer
+	if (n % 2 == 0)
+	{
+		printf("even\n");
+	}
+	else
+	{
+		printf("odd\n");
+	}
+}
+
+
+conditions.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	int x = get_int("x: ");
+
+	// Prompt user for y
+	int y = get_int("y: ");
+
+	// Compare x and y
+	if (x < y)
+	{
+		printf("x is less than y\n");
+	}
+	else if (x > y)
+	{
+		printf("x is greater than y\n");
+	}
+	else
+	{
+		printf("x is equal to y\n");
+	}
+}
+
+
+answer.c
+
+// Logical operators
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for answer
+	char c = get_char("Answer: ");
+
+	// Check answer
+	if (c == 'Y' || c == 'y')
+	{
+		printf("yes\n");
+	}
+	else if (c == 'N' || c == 'n')
+	{
+		printf("no\n");
+	}
+}
+
+
+cough0.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("cough\n");
+	printf("cough\n");
+	printf("cough\n");
+}
+
+
+cough1.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		printf("cough\n");
+	}
+}
+
+
+cough2.c
+
+#include <stdio.h>
+
+void cough(void);
+
+int main(void)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		cough();
+	}
+}
+
+void cough(void)
+{
+	printf("cough\n");
+}
+
+
+cough3.c
+
+#include <stdio.h>
+
+void cough(int n);
+
+int main(void)
+{
+	cough(3);
+}
+
+void cough(int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("cough\n");
+	}
+}
+
+
+positive.c
+
+pokracovat
