@@ -1,0 +1,480 @@
+Print
+
+printf(“Hello, world\n”);
+
+
+Variables
+
+int counter = 0;
+
+
+Incrementing
+
+counter = counter + 1;
+counter += 1;
+counter ++;
+
+
+Conditionals
+
+if (x <  y)
+{
+	printf(“x is less than y\n”);
+}
+
+
+if (x <  y)
+{
+	printf(“x is less than y\n”);
+}
+else
+{
+	printf(“x is not less than y\n”);
+}
+
+
+if (x < y)
+{
+	printf(“x is less than y\n”);
+}
+else if (x > y)
+{
+	printf(“x is not less than y\n”);
+}
+else if (x == y)
+{
+	printf(“x is equal to y\n”);
+}
+
+
+if (x < y)
+{
+	printf(“x is less than y\n”);
+}
+else if (x > y)
+{
+	printf(“x is not less than y\n”);
+}
+else
+{
+	printf(“x is equal to y\n”);
+}
+
+
+While Loops
+
+while (true)
+{
+	printf(“hello, world\n”);
+}
+
+
+For loops
+
+for (int i = 0; i < 50; i++)	#  i++ is the same thing as the i = i + 1 or i += 1 as per the incrementing article
+{
+	printf(“hello, world\n”);
+}
+
+
+User input
+
+string answer = get_string(“What’s your name?\n”);
+printf(“%s”, answer);
+printf(“hello, %s”, answer);
+
+
+hello.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf(“hello, world\n”);
+}
+
+
+Compilation
+
+CS50 sandbox
+
+
+Command-line arguments
+
+clang -o hello hello.c
+./hello
+
+
+Make
+
+make hello
+
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf(“hello, name\n”);
+}
+
+
+make name
+
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+	name = get_string(“What is your name?\n”);
+	printf(“hello, %s\n”, name);
+}
+
+
+get_string and printf
+
+// They are stored in the libraries like cs50.h and so, which someone created before
+
+
+int.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)					// This is a equivalent of the Scratch’s green flag to start the program
+{
+	int I = get_int(“Integer: “);
+	printf(“hello, %i\n”, i);
+}
+
+
+float.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	float f = get_float(“Float: “);
+	printf(“hello, %f\n”, f);
+}
+
+
+ints.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	int x = get_int(“x: “);
+
+	// Prompt user for y
+	int y = get_int(“y: “);
+
+	// Perform arithmetic
+	printf(“x + y = %i\n”, x + y);
+	printf(“x + y = %i\n”, x - i);
+	printf(“x * y = %i\n”, x * y);
+	printf(“x / y = %i\n”, x / y);
+	printf(“x mod y = %i\n”, x % y);
+}
+
+
+floats.c
+
+// Floating-point arithmetic with float
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	float x = get_float("x: ");
+
+	// Prompt user for y
+	float y = get_float("y: ");
+
+	// Perform division
+	printf("x / z = %.7f\n", x / y);
+}
+
+(notes:
+- %.7f - shows 7 decimal places instead of the default 6, %.50f shows 50 places and so
+- floats - decimal places have finite number, because there is finite memory (RAM) in computer. To double the amount, use double instead, but it will use more bits so more space, which is not always effective and it is expensive
+)
+
+// Floating/point arithmetic with double
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	double x = get_double("x: ");
+
+	// Prompt user for y
+	double y = get_double("y: ");
+
+	// Perform division
+	printf("x / z = %.7f\n", x / y);
+}
+
+
+parity.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for integer
+	int n = get_int("n: ");
+
+	// Check parity of integer
+	if (n % 2 == 0)
+	{
+		printf("even\n");
+	}
+	else
+	{
+		printf("odd\n");
+	}
+}
+
+
+conditions.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for x
+	int x = get_int("x: ");
+
+	// Prompt user for y
+	int y = get_int("y: ");
+
+	// Compare x and y
+	if (x < y)
+	{
+		printf("x is less than y\n");
+	}
+	else if (x > y)
+	{
+		printf("x is greater than y\n");
+	}
+	else
+	{
+		printf("x is equal to y\n");
+	}
+}
+
+
+answer.c
+
+// Logical operators
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+	// Prompt user for answer
+	char c = get_char("Answer: ");
+
+	// Check answer
+	if (c == 'Y' || c == 'y')
+	{
+		printf("yes\n");
+	}
+	else if (c == 'N' || c == 'n')
+	{
+		printf("no\n");
+	}
+}
+
+
+cough0.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("cough\n");
+	printf("cough\n");
+	printf("cough\n");
+}
+
+
+cough1.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		printf("cough\n");
+	}
+}
+
+
+cough2.c
+
+#include <stdio.h>
+
+void cough(void);
+
+int main(void)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		cough();
+	}
+}
+
+void cough(void)
+{
+	printf("cough\n");
+}
+
+
+cough3.c
+
+#include <stdio.h>
+
+void cough(int n);
+
+int main(void)
+{
+	cough(3);
+}
+
+void cough(int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("cough\n");
+	}
+}
+
+
+positive.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int get_positive_int(string prompt);
+
+int main(void)
+{
+	int i = get_positive_int("Positive integer: ");
+	printf("%i\n", i);
+}
+
+int get_positive_int(string prompt)
+{
+	int n;
+	do
+    {
+		n = get_int("%s", prompt);
+	}
+	while (n < 1);
+	return n;
+}
+
+(notes:
+- ,,do while" loop instead of while loop or for loop will do the action first, so at least once before checking the condition
+- return - at the end of mz function, if I want to return something, I have to tzpe return and then what I want to return
+- in c, the variables exist only in the scope, which literally means, they only exist between the curly braces and they are not known outside (so they are local, not global)
+)
+
+
+Integer Overflow
+
+(notes:
+- finite amount of memory means finite amount of numbers (integers)
+)
+
+
+overflow.c
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main(void)
+{
+	// Iteratively double i
+	for (int i = 1; ; i *= 2)
+	{
+		printf("%i\n", i);
+		sleep(1);
+	}
+}
+
+(notes:
+- the issue of overflowing the software with big enough number due to the deficit of bits (memory) can couse big problems
+)
+
+
+Integer Underflow
+
+(notes:
+- the opposite of overflow is underflow, so if there is for example 1 byte, which is 8 bits - 00000001 and you will subtract 2, you will not get 00000000, but 11111111
+)
+
+
+Shorts
+
+Data types and Variables
+
+Integer:
+int
+- always take up 4 bytes of memory (32 bits)
+- it is split half by half between negative and positive values (around -2B to +2B)
+- unsigned int - unsigned qualifier doubles the positive range, but can't use negative, so full 32 bits to positive value, which is around +4B
+
+Character:
+char
+- store single character
+- always take up 1 byte of memory (8 bits)
+- thanks to ASCII, you can write any character and single number
+
+Floating point number
+float
+- floating-point values or also known as real numbers
+- always take up 4 bytes of memory (32 bits)
+- not that precise because of the memory
+
+Double
+double
+- doubles the memory of floating point number to 8 bytes (64 bits)
+- allows to specify much more precise numbers than float
+
+Void
+void
+- it is a type, not a data type
+- it returns no value or taking no parameters, so it is a placeholder for ,,nothing"
+
+
+#include <cs50.h> (below data types 
+
+Boolean
+bool
+- for storing True or False
+- not default in C language
+
+String
+string
+- for variables that will store a series of characters like words, sentences and so
+- not default in C
+
+
+- If I need to create multiple variables of the same type at once, I can do it on one line by specifying the data type and writing the names one after each other and separate by comma - int height, width;
+- Good common practice is to declare variables only when I need them, not all at once and at the beginning of the code
+- Don't re-declare variables, it is enough to specify the data type just once when declaring them
+- I cna declare variable and give it a value at the same type - int number = 17; // That is called initialization
