@@ -1,0 +1,32 @@
+// Program will calculate the minimum number of coins which should be returned after giving a specific value using the modulo math
+
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+    // Declaring of the variable dollars
+    float dollars = 0;
+    // Do while loop to get a positive input from the user
+    do
+    {
+        // Asking the user for an input
+        dollars = get_float("Change owed: ");
+    }
+    // Checking if the input is more than 1 penny
+    while (dollars < 0.009);
+    {
+        // Round dollars to pennies
+        int change = round(dollars * 100);
+        // Calculate the number of each coin
+        int quarters = change / 25;
+        int dimes = (change % 25) / 10;
+        int nickels = ((change % 25) % 10) / 5;
+        int pennies = (((change % 25) % 10) % 5) / 1;
+        // Adding the coins together
+        int coins = quarters + dimes + nickels + pennies;
+        // Printing the number of coins
+        printf("%i\n", coins);
+    }
+}
