@@ -1,0 +1,31 @@
+// This program will draw a Mario's pyramid with the height as per the user's input from 1-8
+
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    // Declaring of the variable height with a value of 0
+    int height = 0;
+    // Do while loop to get user's input 1-8, otherwise asks again
+    do
+    {
+        // Prompts user for the height
+        height = get_int("Height: ");
+    }
+    // Checks if the input is between 1 and 8
+    while (height < 1 || height > 8);
+    // Draws pyramid with given height
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < height - 1 - i; j++)
+        {
+            printf(" ");
+        }
+        for (int k = 0; k < i + 1; k++)
+        {
+            printf("#");
+        }
+        printf("\n");
+    }
+}
