@@ -1,0 +1,57 @@
+// This program will draw a Mario's pyramid with the height as per the user's input from 1-8
+
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    // Declares the height variable with value 1, so the loop can be started
+    int height = 1;
+    // Loop for asking for the height and if correct value of 1-8 is given, then draws the pyramid as per the request
+    while (true)
+    {
+        // Asks for the height
+        height = get_int("Height: ");
+        // Checks the answer and draw or asks again
+        if (height == 1)
+        {
+            printf("#  #\n");
+            break;
+        }
+        else if (height == 2)
+        {
+            printf(" #  #\n##  ##\n");
+            break;
+        }
+        else if (height == 3)
+        {
+            printf("  #  #\n ##  ##\n###  ###\n");
+            break;
+        }
+        else if (height == 4)
+        {
+            printf("   #  #\n  ##  ##\n ###  ###\n####  ####\n");
+            break;
+        }
+        else if (height == 5)
+        {
+            printf("    #  #\n   ##  ##\n  ###  ###\n ####  ####\n#####  #####\n");
+            break;
+        }
+        else if (height == 6)
+        {
+            printf("     #  #\n    ##  ##\n   ###  ###\n  ####  ####\n #####  #####\n######  ######\n");
+            break;
+        }
+        else if (height == 7)
+        {
+            printf("      #  #\n     ##  ##\n    ###  ###\n   ####  ####\n  #####  #####\n ######  ######\n#######  #######\n");
+            break;
+        }
+        else if (height == 8)
+        {
+            printf("       #  #\n      ##  ##\n     ###  ###\n    ####  ####\n   #####  #####\n  ######  ######\n #######  #######\n########  ########\n");
+            break;
+        }
+    }
+}
