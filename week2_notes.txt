@@ -325,3 +325,30 @@ int main(int argc, string argv[])
 
 
 Ciphering
+
+
+exit.c
+
+// Returns explicit value from main
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(in argc, string argv[])
+{
+	if (arc != 2)
+	{
+		printf("missing command-line argument\n");
+		return 1;
+	}
+	printf("hello, %s\n", argv[1]);
+	return 0;
+}
+
+(notes:
+ - if I want to retroactively see what value main returned, I can run this command after the program ends - echo $?
+ - if you don't specify return value, program will automatically return value 0, because 0 means that everything did well. If something went wrong, you want to return different value.
+)
+
+
+Finding 50
