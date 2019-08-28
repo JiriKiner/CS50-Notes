@@ -1,0 +1,536 @@
+Process of compiling
+
+1st - Preprocessing
+ - checks for #include stuff and inputs the functions in them which I am using in my code (stdio.h, cs50.h, etc.)
+
+2nd - Compiling
+ - changes the code to instructions for the CPU (assembly)
+
+3nd - Assembling
+ - change the instructions to binary
+
+4th - Linking
+ - change the libraries to binary and link all the binary code to one file
+
+
+buggy0.c
+
+int main(void)
+{
+	printf("hello, world\n")
+}
+
+
+buggy2.c
+
+#include <stdio.h>
+
+int main(void)
+{
+	for (int i = 0; i <= 10; i++)
+	}
+		printf("i is %i\n", i);
+		printf("#\n");
+	}
+}
+
+
+Debugging Tools
+
+help50 - to help with error messages and wrong code
+printf - to see what is actuatlly happening at the particular place
+style50 - to see if it is nice looking code
+
+
+RAM
+
+ - Random Access Memory
+
+
+Arrays
+
+ - stored back to back to back in memory
+
+
+scores0.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+void chart(int score);
+
+int main(void)
+{
+	int score1 = get_int("Score 1: ");
+	int score2 = get_int("Score 2: ");
+	int score3 = get_int("Score 3: ");
+
+	printf("Score 1: ");
+	chart(score1);
+
+	printf("Score 2: ");
+	chart(score2);
+
+	printf("Score 3: ");
+	chart(score3);
+}
+
+void chart(int score)
+{
+	for (int i = 0; i < score; i++)
+	{
+		printf("#");
+	}
+	printf("\n");
+}
+
+
+scores2.c
+
+// Generates a bar chart of three scores using an array
+
+#include <stdio.h>
+#include <cs50.h>
+
+const int COUNT = 3;
+
+void chart(int score);
+
+int main(void)
+{
+	// Get scores from user
+	int scores[COUNT];
+	for (int i = 0; i < COUNT; i++)
+	{
+		scores[i] = get_int("Score %i: ", i + 1);
+	}
+
+	// Chart scores
+	for (int i = 0; i < COUNT; i++)
+	{
+		printf("Score %i: ", i + 1);
+		chart(scores[i]);
+	}
+}
+
+void chart(int score)
+{
+	for (int i = 0; i < score; i++)
+	{
+		printf("#");
+	}
+	printf("\n");
+}
+
+(notes:
+ - if the variable is named with capital letters, that means it is declared at the beginning of the code and it is global, accessible everywhere (outside the curly braces)
+)
+
+
+scores4.c
+
+// Generates a bar chart of three scores by passing an array, using a constant
+
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+const int COUNT = 3;
+
+void chart(int count, int scores[]);
+
+int main(void)
+{
+	// Get scores from user
+	int scores[COUNT];
+	for (int i = 0; i < COUNT; i++)
+	{
+		scores[i] = get_int("Score %i: ", i + 1);
+	}
+
+	// Chart scores
+	chart(COUNT, scores);
+}
+
+// Generate bars
+
+void chart(int count, int scores[])
+{
+	// Output one hash per point
+	for (int i = 0; i < count; i++)
+	{
+		for(int j = 0; j < scores[i]; j++)
+		{
+			printf("#");
+		}
+		printf("\n");
+	}
+}
+
+
+string0.c
+
+// Prints string char by char
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+
+int main(void)
+{
+	string s = get_string("Input :");
+	printf("Output:\n");
+	for (int i = 0, n = strlen(s); i < n; i++)
+	{
+		printf("%c\n", s[i]);
+	}
+}
+
+(notes:
+ - including the string.h library will unlock string related functions, for example strlen, which will return the length of the string
+)
+
+
+Null Terminator
+
+ - for the computer to know where in the memory it stored the variable, string, etc. it is putting identifier in the first byte that it starts here and at the end of the variable it puts one byte of zeros (00000000 or \0) known as null terminator
+
+
+strlen.c
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+
+int main(void)
+{
+	string s = get_string("Name: ");
+
+	int n = 0;
+	while (s[n] != '\0')
+	{
+		n++;
+	}
+
+	printf("The length of your name is %i\n", n);
+}
+
+
+ascii0.c
+
+// Explicitly casts chars to ints
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+
+int main(void)
+{
+	string s = get_string("String: ");
+	for (int = 0; i < strlen(s); i++)
+	{
+		int c = (int) s[i];	// I even don't have to specify (int), I can just write int c = s[i]
+		printf("%c %i\n", s[i], c); // I can even exclude the whole line above and just type printf("%c %i\n", s[i], s[i]);
+	}
+}
+
+(notes:
+ - the default code is called explicit casting and if I will use the methods in the comments, that is called implicit casting
+)
+
+capitalize0.c
+
+// Capitalizes a string
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+
+int main(void)
+{
+	string s = get_string("Before: ");
+	printf("After: ");
+	for (int i = 0, n = strlen(s); i < n; i++)
+	{
+		if (s[i] >= 'a' && s[i] <= 'z')
+		{
+			printf("%c", s[i] - ('a' - 'A'));	// Subtracts the ASCII value of the lower letter from capital letter, which is 32 for all letters, and then subtracts the value (32) from my letter
+		}
+		else
+		{
+			printf("%c", s[i]);
+		}
+	}
+	printf("\n");
+}
+
+
+capitalize1.c
+
+// Capitalizes string using ctype library (and an unnecessary condition)
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void)
+{
+	string s = get_string("Before: ");
+	printf("After: ");
+	for (int i = 0, n = strlen(s); i < n; i++)
+	{
+		printf("%c", toupper(s[i]));
+	}
+	printf("\n");
+}
+
+
+argv0.c
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(int argc, string argv[])
+{
+	if (argc == 2)
+	{
+		printf("hello, %s\n", argv[1]);
+	}
+	else
+	{
+		printf("hello, world\n");
+	}
+}
+
+
+argv1.c
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+
+int main(int argc, string argv[])
+{
+	// Iterate over strings in argv
+	for (int i = 0; i < argc; i++)
+	{
+		// Iterate over chars in argv[i]
+		for (int j = 0, n = strlen(argv[i]); j < n; j++)
+		{
+			printf("%c\n", argv[i][j]);
+		}
+	}
+}
+
+
+Ciphering
+
+
+exit.c
+
+// Returns explicit value from main
+
+#include <stdio.h>
+#include <cs50.h>
+
+int main(in argc, string argv[])
+{
+	if (arc != 2)
+	{
+		printf("missing command-line argument\n");
+		return 1;
+	}
+	printf("hello, %s\n", argv[1]);
+	return 0;
+}
+
+(notes:
+ - if I want to retroactively see what value main returned, I can run this command after the program ends - echo $?
+ - if you don't specify return value, program will automatically return value 0, because 0 means that everything did well. If something went wrong, you want to return different value.
+)
+
+
+Finding 50
+
+Computer can't see in the all arrays at once, just to one
+
+
+Sorting on Stage
+
+In array of randomized numbers, I can do few algorithms to sort them out.
+
+
+Bubble Sort
+
+Compare each pair from left to right and then move the smaller number of the two to the left. When some number on the end is on the good position, I can remove it from the checks.
+
+
+Selection Sort
+
+Check the whole array from left to right, take the smallest number and move it at the beginning. Then remove the number it self and it's position from the checking and moving.
+
+
+Computational Complexity
+
+(n-1) + (n-2) + (n-3).... +1
+n(n-1)/2
+(n2-n)/2
+n2/2 - n/2
+O(n2)
+O(log n)
+
+
+Merge sort
+
+Dividing the array in halfs until you have array of one character and then sorting it and moving into another empty arrays in right order.
+
+
+Comparing Sorts Visually
+
+
+Shorts
+
+
+Functions
+
+We can write our functions to use them multiple times without writing them again and again in the main code, which will be unwieldy.
+C and nearlz all languages developed since allow us to write functions, sometimes also known as procedures, methods (object oriented languages), or subroutines.
+
+- Function is a black box with a set of 0+ inputs and 1 output
+- It is called a black box, because we don't need to see what is inside and what it does, we just need the output
+- Using of them allows to organize better. They help break up a complicated problem into more manageable subparts
+- Simplification - smaller components tend to be easier to design, implement and debug
+
+Function Declarations
+
+- The first step to creating a function is to declare it. This gives the compiler a heads-up that a user-written function appears in the code
+- Function declarations should always go atop the code, before begin writing main()
+- There is a standard form that every function declaration follows
+
+	return-type name(argument-list);
+- The return-type is what kind of variable the function will output
+- The name is what you want to call your function
+- The argument-list is the comma-separated set of inputs to your function, each of which has a type and a name
+
+example:
+float mult_two_reals(float x, float y);
+
+Function Definitions
+
+- The second step to creating a function is to define it. This allows for predictable behavior when the function is called with inputs
+
+example:
+float mult_two_reals(float x, float y)
+{
+	float product = x * y;
+	return product;
+}
+
+or
+
+float mult_two_reals(float x, float y)
+{
+	return x * y;
+}
+
+Function Calls
+
+- To call a function, simply pass it appropriate arguments and assign its return value to something of the correct type
+
+Function Miscellany
+
+- Functions can sometimes take no inputs. In that case, we declare the function as having a void argument list
+- Functions sometimes do not have an output. In that case, we declare the function as having a void return type
+
+
+Arrays
+
+- Arrays are a fundamental data structure, and they are extremely useful
+- We use arrays to hold values of the same type at contiguous memory locations
+- One way to analogize the notion of array is to think of your local post office, which usually has a large bank of post office boxes
+
+An array is a block of contiguous space in memory, which has been partitioned into small, identically-sized blocks of space called elements, each of which can store a certain amount of data all of the same data type such as int or char and which can be accessed directly by an index.
+P.O. Box analogy:
+A mail bank is a large space on the wall of the post office which has been partitioned into small, identically-sized blocks of space called post office boxes, each of which can hold a certain amount of mail all of a similar type such as letters or small packages and which can be accessed directly by a mailbox number.
+
+- In C, the elements of an array are indexed starting from 0
+- If an array consists of n elements, the first element is located at index 0. The last element is located at index (n - 1)
+- C is very lenient. It will not prevent you from going "out of bounds" of your array; be careful!
+
+Array declarations
+
+	type name [size];
+- The type is what kind of variable each element of the array will be
+- The name is what you want to call your array
+- The size is how many elements you would like your array to contain
+
+- If you think of a single element of an array of type data-type the same as you would any other variable of type data-type (which, effectively, it is), then all the familiar operations make sense
+- When declaring and initializing an array simultaneously, there is a special syntax that may be used to fill up the array with its starting values
+
+	// instantiation syntax
+	bool truthtable[3] = { false, true, true };
+
+	// individual element syntax
+	bool truthtable[3];
+	truthtable[0] = false;
+	truthtable[1] = true;
+	truthtable[2] = true;
+- When using instantiation syntax, you don't have to specify the array size in square brackets, because the compiler will know itself, that you want array of 3 elements as per the specification in the curly braces
+
+- Arrays can consist of more than a single dimension. You can have as many size specifiers as you wish
+	bool battleship[10][10];
+- You can choose to think of this as either a 10x10 grid of cells
+	- In memory though, it's really just a 100-element one-dimensional array
+	- Multi-dimensional arrays are great abstractions to help visualize game boards or other complex representations
+
+- While we can treat individual elements of arrays as variables, we cannot treat entire arrays themselves as variables
+- We cannot, for instance, assign one array to another using the assignment operator. That is not legal C
+- Instead, we must use a loop to copy over the elements one at a time
+
+- Most variables in C are passed by value in function calls
+- Arrays do not follow this rule. Rather, they are passed by reference. The callee receives the actual array, not a copy of it
+
+
+Linear Search
+
+- The idea of the algorithm is to iterate across the array from left to right, searching for a specified element
+- Worst-case scenario: O(n) We have to look through the entire array of n elements, either because the target element is the last element of the array or doesn't exist in the array at all
+- Best-case scenario: omega(1) The target element is the first element of the array, and so we can stop looking immediately after we start
+
+
+Binary Search
+
+- The idea of the algorithm is to divide and conquer, reducing the search area by half each time, trying to find a target number
+	- In order to leverage this power however, our array must first be sorted, else we cannot make assumptions about the array's contents
+- Worst-case scenario: O(log n) We have to divide a list of n elements in half repeatedly to find the target element, either because the target element will be found at the end of the last division or doesn't exist in the array at all
+- Best-case scenario: omega(1) The target element is at the midpoint of the full array, and so we can stop looking immediately after we start
+
+
+Selection Sort
+
+- The idea of the algorithm is to find the smallest unsorted element and add it to the end of the sorted list
+- Worst-case scenario: O(n2) We have to iterate over each of the n elements of the array (to find the smallest unsorted element) and we must repeat this process n times, since only one element gets sorted on each pass
+- Best-case scenario: omega(n2) Exactly the same! There's no way to guarantee the array is sorted until we go through this process for all the elements
+
+
+Bubble Sort
+
+- The idea of the algorithm is to move the higher valued elements generally towards the right and lower value elements generally towards the left
+- Worst-case scenario: O(n2) The array is in reverse order; we have to "bubble" each of the n elements all the way across the array, and since we can only fully bubble one element into position per pass, we must do this n times
+- Best-case scenario: omega(n) The array is already perfectly sorted, and we make no swaps on the first pass
+
+
+Insertion Sort
+
+- The idea of the algorithm is to build your sorted array in place, shifting elements out of the way if necessary to make room as you go
+- Worst-case scenario: O(n2) The array is in reverse order; we have to shift each of the n elements n positions each time we make an insertion
+- Best-case scenario: omega(n) The array is already perfectly sorted, and we simple keep moving the line between "unsorted" and "sorted" as we examine each element
+
+
+Merge Sort
+
+- The idea of the algorithm is to sort smaller arrays and then combine those arrays together (merge them) in sorted order
+- Merge sort leverages something called recursion
+- Worst-case scenario: O(n log n) We have to split n elements up and then recombine them, effectively doubling the sorted subarrays as we build them up. (combining sorted 1-element arrays into 2-element arrays, combining sorted 2-element arrays into 4-element arrays...)
+- Best-case scenario: omega(n log n) The array is already perfectly sorted. But we still have to split and recombine it back together with this algorithm
