@@ -41,21 +41,25 @@ int main(int argc, string argv[])
 
     // Encrypts the plaintext by given key, excluding non-alphabet characters
     int ptlength = strlen(pt);
-    char ct[ptlength];
-    for (int i = 0; i < ptlength; i++)
+    char ct[ptlength + 1];
+    int i = 0;
+    for (i = 0; i < ptlength; i++)
     {
         if (isalpha(pt[i]))
         {
+            printf("%i, %i\n", pt[i], k);
             ct[i] = (pt[i] + k);
+            printf("%i, %i, %i\n", pt[i], k, ct[i]);
         }
         else
         {
             ct[i] = pt[i];
         }
     }
+    printf("%i\n", ct[i]);
 
     // Wraparound from Z to A
-    for (int i = 0; i < ptlength; i++)
+    for (i = 0; i < ptlength; i++)
     {
         // For uppercase letters
         if (isupper(pt[i]))
@@ -74,6 +78,7 @@ int main(int argc, string argv[])
             }
         }
     }
+    ct[i] = '\0';
     // Prints encrypted ciphertext
     printf("ciphertext: %s\n", ct);
     return 0;
