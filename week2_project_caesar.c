@@ -41,7 +41,7 @@ int main(int argc, string argv[])
 
     // Encrypts the plaintext by given key, excluding non-alphabet characters
     int ptlength = strlen(pt);
-    char ct[ptlength + 1];
+    unsigned char ct[ptlength + 1];
     int i = 0;
     for (i = 0; i < ptlength; i++)
     {
